@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private static int port=0;
     private static int baudRate = 9600;
 
-    private static int mainWidth = 0;
-
 
 
     private String vid = "2341";
@@ -56,11 +54,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        DisplayMetrics metric = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metric);
-        mainWidth = metric.widthPixels;     // 螢幕寬度（畫素）
-
         IntentFilter filter = new IntentFilter();
         filter.addAction(TAGOUT);
         this.registerReceiver(mUsbReceiver, filter);
@@ -71,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        RestartActivity();
     }
 
     public void SetHasDevice(Boolean tuneOn)
@@ -113,18 +111,6 @@ public class MainActivity extends AppCompatActivity {
         return baudRate;
     }
 
-    public int GetTextSize(int sWidth, int mWidth, int LargerWidth) {
-        if (mainWidth < 1200) {
-            return sWidth;
-        }
-
-        if (mainWidth < 1580) {
-            return mWidth;
-        }
-
-        return LargerWidth;
-    }
-
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -134,9 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 UsbDevice usbDevice = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
                 if (usbDevice != null) {
                     HasDevice = false;
-                    Intent restartIntent = getIntent();
-                    finish();
-                    startActivity(restartIntent);
+                    RestartActivity();
                 }
             }else if (action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)){
                 Toast toast = Toast.makeText(context, "裝置接入",  duration);
@@ -145,6 +129,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    public void RestartActivity() {
+        Intent restartIntent = getIntent();
+        finish();
+        startActivity(restartIntent);
+    }
 
     public boolean Check() {
         UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);

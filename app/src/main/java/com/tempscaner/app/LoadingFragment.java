@@ -163,11 +163,15 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
     @Override
     public void onSerialConnectError(Exception e) {
         disconnect();
+        MainActivity activity = (MainActivity)getActivity();
+        activity.RestartActivity();
     }
 
     @Override
     public void onSerialIoError(Exception e) {
         disconnect();
+        MainActivity activity = (MainActivity)getActivity();
+        activity.RestartActivity();
     }
 
     @Override
