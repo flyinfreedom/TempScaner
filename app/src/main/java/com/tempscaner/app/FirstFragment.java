@@ -24,6 +24,13 @@ public class FirstFragment extends Fragment {
     private View view;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MainActivity activity = (MainActivity)getActivity();
+        activity.SetPageNumber(1);
+    }
+
+    @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState

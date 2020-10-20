@@ -17,6 +17,8 @@ public class SecondFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainActivity activity = (MainActivity)getActivity();
+        activity.SetPageNumber(2);
     }
 
     @Override

@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static Boolean HasDevice = false;
 
-    private static int deviceId=1002;
-    private static int port=0;
+    private static int deviceId = 1002;
+    private static int port = 0;
     private static int baudRate = 9600;
-
-
 
     private String vid = "2341";
     private String pid = "8036";
+
+    private int pageNumber;
 
     class ListItem {
         UsbDevice device;
@@ -66,50 +66,47 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    public void onBackPressed() {
-        RestartActivity();
-    }
 
-    public void SetHasDevice(Boolean tuneOn)
-    {
+    public void SetHasDevice(Boolean tuneOn) {
         HasDevice = tuneOn;
     }
 
-    public Boolean GetHasDevice()
-    {
+    public Boolean GetHasDevice() {
         return HasDevice;
     }
 
-    public void SetDeviceId(int id)
-    {
+    public void SetDeviceId(int id) {
         deviceId = id;
     }
 
-    public int GetDeviceId()
-    {
+    public int GetDeviceId() {
         return deviceId;
     }
 
-    public void SetPort(int portNum)
-    {
+    public void SetPort(int portNum) {
         port = portNum;
     }
 
-    public int GetPort()
-    {
+    public int GetPort() {
         return port;
     }
 
-    public void SetBaudRate(int baud)
-    {
+    public void SetBaudRate(int baud) {
         baudRate = baud;
     }
 
-    public int GetBaudRate()
-    {
+    public int GetBaudRate() {
         return baudRate;
     }
+
+    public void SetPageNumber(int page) {
+        pageNumber = page;
+    }
+
+    public int GetPageNumber() {
+        return pageNumber;
+    }
+
 
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
         @Override
@@ -122,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
                     HasDevice = false;
                     RestartActivity();
                 }
-            }else if (action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)){
-                Toast toast = Toast.makeText(context, "裝置接入",  duration);
+            } else if (action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)) {
+                Toast toast = Toast.makeText(context, "裝置接入", duration);
                 toast.show();
                 Check();
             }
@@ -180,4 +177,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    @Override
+    public void onBackPressed() {
+        int pn = GetPageNumber();
+        if (pn <= 2) {
+            System.exit(0);
+        } else if (pn == 3 || pn == 4) {
+            RestartActivity();
+        }else{
+            super.onBackPressed();
+        }
+    }
+
 }

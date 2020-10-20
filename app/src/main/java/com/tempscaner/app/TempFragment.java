@@ -27,6 +27,9 @@ public class TempFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         realTemp = getArguments().getDouble("realTemp");
+
+        MainActivity activity = (MainActivity)getActivity();
+        activity.SetPageNumber(4);
     }
 
     @Override

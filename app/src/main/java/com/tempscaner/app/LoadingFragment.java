@@ -58,6 +58,13 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
     List<Double> tempArray = new ArrayList<>();
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MainActivity activity = (MainActivity)getActivity();
+        activity.SetPageNumber(3);
+    }
+
+    @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
