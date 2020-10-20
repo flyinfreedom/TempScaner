@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.tempscaner.app.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.tempscaner.app.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_LoadingFragment"
+            app:destination="@id/LoadingFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/LoadingFragment"
+        android:name="com.tempscaner.app.LoadingFragment"
+        android:label="@string/loading_fragment_label"
+        tools:layout="@layout/fragment_loading">
+
+        <action
+            android:id="@+id/action_LoadingFragment_to_TempFragment"
+            app:destination="@id/TempFragment" />
+        <action
+            android:id="@+id/action_LoadingFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"/>
+        <action
+            android:id="@+id/action_LoadingFragment_to_FailedFragment"
+            app:destination="@id/FailedFragment" />
+        <action
+            android:id="@+id/action_LoadingFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/TempFragment"
+        android:name="com.tempscaner.app.TempFragment"
+        android:label="@string/temp_fragment_label"
+        tools:layout="@layout/fragment_temp">
+
+        <action
+            android:id="@+id/action_TempFragment_to_LoadingFragment"
+            app:destination="@id/LoadingFragment" />
+        <action
+            android:id="@+id/action_TempFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"/>
+        <action
+            android:id="@+id/action_TempFragment_to_FailedFragment"
+            app:destination="@id/FailedFragment"
+            app:popUpTo="@id/FailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FailedFragment"
+        android:name="com.tempscaner.app.FailedFragment"
+        android:label="@string/failed_fragment_label"
+        tools:layout="@layout/fragment_failed">
+
+        <action
+            android:id="@+id/action_FailedFragment_to_LoadingFragment"
+            app:destination="@id/LoadingFragment" />
+
+        <action
+            android:id="@+id/action_FailedFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"/>
+    </fragment>
+</navigation>
