@@ -15,6 +15,7 @@ import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class FailedFragment extends Fragment {
     private View view;
@@ -33,6 +34,10 @@ public class FailedFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        MainActivity activity = (MainActivity)getActivity();
+        TextView detection_failed_sub = view.findViewById(R.id.detection_failed_sub);
+        detection_failed_sub.setTextSize(activity.GetTextSize(12, 16, 16));
 
         view.findViewById(R.id.button_rescan).setOnClickListener(new View.OnClickListener() {
             @Override

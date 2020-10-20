@@ -47,12 +47,9 @@ public class FirstFragment extends Fragment {
     ) {
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        DisplayMetrics metric = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels;     // 螢幕寬度（畫素）
-
+        MainActivity activity = (MainActivity)getActivity();
         TextView textview = view.findViewById(R.id.textView);
-        textview.setTextSize(width < 1100 ? 12 : 16);
+        textview.setTextSize(activity.GetTextSize(12, 16, 16));
         return view;
     }
 

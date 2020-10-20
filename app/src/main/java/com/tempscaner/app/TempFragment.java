@@ -13,7 +13,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Vibrator;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,18 +33,16 @@ public class TempFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_temp, container, false);
+
+        MainActivity activity = (MainActivity)getActivity();
+        TextView temp_txt = view.findViewById(R.id.temp_txt);
+        temp_txt.setTextSize(activity.GetTextSize(12, 16, 16));
+
         return view;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        DisplayMetrics metric = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels;     // 螢幕寬度（畫素）
-
-        TextView textview = view.findViewById(R.id.textView);
-        textview.setTextSize(width < 1100 ? 12 : 16);
 
         view.findViewById(R.id.button_rescan).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +61,6 @@ public class TempFragment extends Fragment {
             String colorCode = realTemp >= highTemp ? "#B1256C" : "#006D94";
             TextView tempTextView = view.findViewById(R.id.temp_txt);
             tempTextView.setTextColor(Color.parseColor(colorCode));
-            tempTextView.setTextSize(width < 1200 ? 32 : 40);
             tempTextView.setText(realTemp + "°C / " + realTempF + "°F");
 
             String tempMessage = realTemp >= highTemp ? "The temperature is higher than normal" : "The temperature is normal";

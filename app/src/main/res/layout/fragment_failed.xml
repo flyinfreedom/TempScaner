@@ -27,20 +27,21 @@ tools:context=".FailedFragment">
     app:layout_constraintTop_toBottomOf="@+id/textView"
     app:layout_constraintVertical_bias="0.47" />
 
-<TextView
-    android:id="@+id/textView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="120dp"
-    android:text="Please keep the sensor on the skin steadily"
-    android:textColor="#333942"
-    android:textSize="16sp"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/detection_failed_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="Please keep the sensor on the skin steadily"
+        android:textColor="#333942"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
-    android:id="@+id/textView2"
+    <TextView
+    android:id="@+id/detection_failed"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,12 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        MainActivity activity = (MainActivity)getActivity();
+        TextView textView = view.findViewById(R.id.textView);
+        textView.setTextSize(activity.GetTextSize(12, 16, 20));
+        TextView detect_temp_txt =  view.findViewById(R.id.detect_temp_txt);
+        detect_temp_txt.setTextSize(activity.GetTextSize(14, 20, 20));
 
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
             @Override
