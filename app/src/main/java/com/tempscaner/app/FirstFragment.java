@@ -46,10 +46,6 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         view = inflater.inflate(R.layout.fragment_first, container, false);
-
-        MainActivity activity = (MainActivity)getActivity();
-        TextView textview = view.findViewById(R.id.textView);
-        textview.setTextSize(activity.GetTextSize(12, 16, 16));
         return view;
     }
 

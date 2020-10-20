@@ -22,17 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private static int port=0;
     private static int baudRate = 9600;
 
-    private static int mainWidth = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        DisplayMetrics metric = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metric);
-        mainWidth = metric.widthPixels;     // 螢幕寬度（畫素）
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(TAGOUT);
@@ -84,18 +77,6 @@ public class MainActivity extends AppCompatActivity {
     public int GetBaudRate()
     {
         return baudRate;
-    }
-
-    public int GetTextSize(int sWidth, int mWidth, int LargerWidth) {
-        if (mainWidth < 1200) {
-            return sWidth;
-        }
-
-        if (mainWidth < 1580) {
-            return mWidth;
-        }
-
-        return LargerWidth;
     }
 
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {

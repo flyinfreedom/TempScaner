@@ -33,11 +33,6 @@ public class TempFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_temp, container, false);
-
-        MainActivity activity = (MainActivity)getActivity();
-        TextView temp_txt = view.findViewById(R.id.temp_txt);
-        temp_txt.setTextSize(activity.GetTextSize(12, 16, 16));
-
         return view;
     }
 
