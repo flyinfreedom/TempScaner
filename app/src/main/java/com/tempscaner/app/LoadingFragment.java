@@ -52,6 +52,7 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
     private int port = 0;
     private int baudRate = 9600;
 
+    private int skipCounter = 0;
     private boolean startDetect = false;
 
     List<Double> tempArray = new ArrayList<>();
@@ -192,8 +193,10 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
     @Override
     public void onSerialRead(byte[] data) {
         TextView v = view.findViewById(R.id.textView4);
+        skipCounter++;
 
         if (tempArray.size() == 40 && startDetect) {
+            skipCounter=0;
             startDetect = false;
             Collections.sort(tempArray);
             double currentTemp = tempArray.get(25);
@@ -205,7 +208,7 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
                 bundle.putDouble("realTemp", currentTemp);
                 Navigation.findNavController(view).navigate(R.id.action_LoadingFragment_to_TempFragment, bundle);
             }
-        } else if (tempArray.size() < 40) {
+        } else if (tempArray.size() < 40 && skipCounter>=10) {
             double temp = 0.0;
             try {
                 String tempStr = new String(data);
