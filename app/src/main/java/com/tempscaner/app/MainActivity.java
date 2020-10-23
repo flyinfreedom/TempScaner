@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAGIN = "android.hardware.usb.action.USB_DEVICE_ATTACHED";
     public static final String TAGOUT = "android.hardware.usb.action.USB_DEVICE_DETACHED";
 
     private static Boolean HasDevice = false;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         IntentFilter filter = new IntentFilter();
+        filter.addAction(TAGIN);
         filter.addAction(TAGOUT);
         this.registerReceiver(mUsbReceiver, filter);
     }
@@ -117,11 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 UsbDevice usbDevice = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
                 if (usbDevice != null) {
                     HasDevice = false;
+                    context.unregisterReceiver(mUsbReceiver);
                     RestartActivity();
                 }
             } else if (action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)) {
-                Toast toast = Toast.makeText(context, "裝置接入", duration);
-                toast.show();
                 Check();
             }
         }
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         } else if (pn == 3 || pn == 4) {
             RestartActivity();
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
