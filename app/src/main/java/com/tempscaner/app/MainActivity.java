@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else {
             if (listItems.size() > 0) {
-                new AlertDialog.Builder(this)
+                new AlertDialog.Builder(this, R.style.AlertDialogCustom)
                         .setMessage("The IR temperature sensor cannot be initialized, please insert it properly.")
                         .setPositiveButton("OK", null)
                         .show();

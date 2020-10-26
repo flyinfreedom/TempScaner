@@ -85,9 +85,6 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
     @Override
     public void onStart() {
         super.onStart();
-        TextView v = view.findViewById(R.id.textView4);
-        v.setText("");
-
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -199,7 +196,6 @@ public class LoadingFragment extends Fragment implements ServiceConnection, Seri
 
     @Override
     public void onSerialRead(byte[] data) {
-        TextView v = view.findViewById(R.id.textView4);
         skipCounter++;
 
         if (tempArray.size() == 40 && startDetect) {

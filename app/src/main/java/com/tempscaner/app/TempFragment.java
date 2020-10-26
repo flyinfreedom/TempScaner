@@ -53,7 +53,7 @@ public class TempFragment extends Fragment {
         try {
             realTemp = (double) (Math.round(realTemp * 10)) / 10; //四捨五入
 
-            double realTempF = realTemp * (9 / 5) + 32;
+            double realTempF = realTemp * (9d / 5d) + 32;
             realTempF = (double) (Math.round(realTempF * 10)) / 10;
 
             String colorCode = realTemp >= highTemp ? "#B1256C" : "#006D94";

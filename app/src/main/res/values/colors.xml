@@ -3,4 +3,6 @@
     <color name="colorPrimary">#B1256C</color>
     <color name="colorPrimaryDark">#B1256C</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorAlertDialogBackground">#000000</color>
+    <color name="colorAlertDialogText">#FFFFFF</color>
 </resources>
